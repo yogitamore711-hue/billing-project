@@ -1,0 +1,1 @@
+web: gunicorn Billing_shop.wsgi
