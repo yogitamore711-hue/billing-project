@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Signup{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'style2.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="signup-box">
+    <h2>Create Account</h2>
+
+    <!-- Django Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <p>
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+</div>
+
+<body style="background-image: url('{% static 'image.jpg' %}'); background-size: cover; background-repeat: no-repeat; height: 100vh;">
+</body>
+{% endblock content %}

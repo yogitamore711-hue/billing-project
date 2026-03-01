@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}View Bill{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'view_bill.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="bill-container">
+
+    <!-- PAYMENT SECTION -->
+    {% if bill.payment_method|lower == "online" and qr_code %}
+    <div class="payment-section">
+        <h4>Payment Method: {{ bill.payment_method|title }}</h4>
+        <div class="qr-box">
+            <h5>Scan to Pay</h5>
+            <img src="data:image/png;base64,{{ qr_code }}" width="180" alt="QR Code">
+            <p><strong>UPI ID:</strong> {{ shop.upi_id }}</p>
+            <p class="amount"><strong>Amount:</strong> ₹ {{ bill.grand_total }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="payment-section">
+        <h4>Payment Method: {{ bill.payment_method|title }}</h4>
+    </div>
+    {% endif %}
+
+    <!-- BILL ACTIONS -->
+    <div class="bill-actions">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" name="action" value="save" class="action-btn save-bill">💾 Save Bill</button>
+        </form>
+
+        <a href="{% url 'generate_bill' %}" class="action-btn new-bill">➕ Create New Bill</a>
+        <button onclick="printInvoice()" class="action-btn print-bill">🖨 Print Bill</button>
+        <a href="{% url 'dashboard' %}" class="action-btn back-dashboard">⬅ Back to Dashboard</a>
+    </div>
+
+    <!-- INVOICE DETAILS -->
+    <div class="invoice-container">
+        <h2>Invoice: {{ bill.invoice_no }}</h2>
+        <p><strong>Date:</strong> {{ bill.created_at|date:"d-m-Y H:i" }}</p>
+        <p><strong>Customer:</strong> {{ bill.customer_name }}</p>
+        <p><strong>Phone:</strong> {{ bill.customer_phone }}</p>
+
+        <hr>
+
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Total</th>
+            </tr>
+
+            {% for item in items %}
+            <tr>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.qty }}</td>
+                <td>₹ {{ item.rate }}</td>
+                <td>₹ {{ item.amount|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <hr>
+
+        <p>Subtotal: ₹ {{ bill.total_amount }}</p>
+        <p>CGST (9%): ₹ {{ bill.cgst }}</p>
+        <p>SGST (9%): ₹ {{ bill.sgst }}</p>
+        <h3>Grand Total: ₹ {{ bill.grand_total }}</h3>
+    </div>
+
+</div>
+
+<script>
+function printInvoice() {
+    window.print();
+}
+</script>
+{% endblock %}

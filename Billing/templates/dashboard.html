@@ -1,0 +1,27 @@
+{% extends "login.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+    
+{%block extra_css %}
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Welcome {{ request.user.username }}</h1>
+
+    <ul>
+        <li><a href="{% url 'generate_bill' %}">🧾 Generate New Bill</a></li>
+        <li><a href="{% url 'bills_history' %}">📜 Bills History</a></li>
+        <li><a href="{% url 'shop_profile' %}">🏦  Shop Profile</a></li>
+        <li><a href="{% url 'trash' %}">🗑️ Trash</a></li>
+        
+    </ul>
+
+    <a class="logout" href="{% url 'logout' %}">🚪 Logout</a>
+</div>
+
+<body style="background-image: url('{% static 'image.jpg' %}'); background-size: cover; background-repeat: no-repeat; height: 100vh;">
+</body>
+{% endblock %}

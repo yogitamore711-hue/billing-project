@@ -1,0 +1,145 @@
+body {
+    background: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 🔥 Bigger Invoice Container */
+.invoice-container {
+    width: 1000px;              /* Increased width */
+    margin: 50px auto;
+    padding: 50px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+}
+
+/* 🔥 Bigger Header */
+.invoice-header h2 {
+    margin-bottom: auto;
+    font-size: 33px;            /* Increased size */
+    font-weight: bold;
+    color: #1a2a3a;
+}
+
+.invoice-header p {
+    margin: 4px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+/* 🔥 Invoice Details Section */
+.invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 35px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* 🔥 Bigger Table */
+.invoice-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    font-size: 15px;           /* Increased text size */
+}
+
+.invoice-table th,
+.invoice-table td {
+    padding: 15px;             /* More spacing */
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* 🔥 Attractive Header */
+.invoice-table thead {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    font-size: 18px;
+}
+
+.invoice-table tbody tr:hover {
+    background-color: #f2f7ff;
+}
+
+/* 🔥 Right Align */
+.right {
+    text-align: right;
+    padding-right: 20px;
+}
+
+/* 🔥 Summary Table */
+.summary-table {
+    width: 45%;
+    margin-left: auto;
+    margin-top: 30px;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+.summary-table td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+.summary-table .right {
+    text-align: right;
+    font-weight: 600;
+}
+
+/* 🔥 Grand Total Highlight */
+.grand-total-row {
+    background: linear-gradient(135deg, #e8f8f0, #d4f5e9);
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* 🔥 Payment Section */
+.payment-section {
+    margin-top: 40px;
+    padding: 25px;
+    border-top: 2px dashed #bbb;
+    font-size: 16px;
+}
+
+.payment-options {
+    display: flex;
+    gap: 40px;
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+/* 🔥 QR Box Improved */
+.qr-box {
+    margin-top: 20px;
+    text-align: center;
+    padding: 25px;
+    border: 2px dashed #2c3e50;
+    border-radius: 12px;
+    background: #fafafa;
+}
+
+/* 🔥 Footer */
+.invoice-footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* 🔥 Print Optimized */
+@media print {
+    body {
+        background: white;
+    }
+    .invoice-container {
+        box-shadow: none;
+        border: none;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+    }
+}

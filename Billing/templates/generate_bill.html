@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Generate Bill{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'generate_bill.css' %}">
+<script src="{% static 'invoices.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="invoice-container">
+
+        <!-- SHOP HEADER -->
+        <div class="invoice-header">
+            <h2>{{ shop.shop_name }}</h2>
+            <p>{{ shop.address }}</p>
+            <p>{{ shop.phone }}</p>
+            <p>{{ shop.gstin }}</p>
+        </div>
+
+        <hr>
+
+        <!-- CUSTOMER DETAILS -->
+        <div class="customer-info">
+            <input type="text" name="customer_name" placeholder="Customer Name" required>
+            <input type="text" name="customer_phone" placeholder="Customer Phone Number" required>
+        </div>
+
+        <div class="invoice-details">
+            <p><strong>Invoice No:</strong> {{ bill.invoice_no|default:"001" }}</p>
+            <p><strong>Date:</strong> {% now "d-m-Y" %}</p>
+        </div>
+
+        <!-- PRODUCT TABLE -->
+        <table class="invoice-table" id="products-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price (₹)</th>
+                    <th>Total (₹)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" name="product_name[]" required></td>
+                    <td><input type="number" name="quantity[]" class="qty" value="1" min="1" required></td>
+                    <td><input type="number" name="price[]" class="price" value="0" step="0.01" required></td>
+                    <td><input type="number" name="total[]" class="total" value="0" readonly></td>
+                    <td><button type="button" class="remove-row">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" id="add-row">Add Product</button>
+
+        <!-- SUMMARY TABLE -->
+        <table class="summary-table">
+            <tbody>
+                <tr>
+                    <td>Sub Total</td>
+                    <td class="right">₹ <span id="subtotal">0.00</span></td>
+                </tr>
+                <tr>
+                    <td>CGST (%) 
+                        <input type="number" id="cgst_percent" value="9" min="0" step="0.01" style="width:60px;">
+                    </td>
+                    <td class="right">₹ <span id="cgst">0.00</span></td>
+                </tr>
+                <tr>
+                    <td>SGST (%) 
+                        <input type="number" id="sgst_percent" value="9" min="0" step="0.01" style="width:60px;">
+                    </td>
+                    <td class="right">₹ <span id="sgst">0.00</span></td>
+                </tr>
+                <tr class="grand-total-row">
+                    <td><strong>Grand Total</strong></td>
+                    <td class="right"><strong>₹ <span id="grandtotal">0.00</span></strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Hidden fields for totals -->
+        <input type="hidden" name="subtotal" id="subtotal_input">
+        <input type="hidden" name="cgst" id="cgst_input">
+        <input type="hidden" name="sgst" id="sgst_input">
+        <input type="hidden" name="grand_total" id="grandtotal_input">
+
+        <!-- PAYMENT METHOD -->
+        <div class="payment-section">
+            <h4>Select Payment Method</h4>
+            <label><input type="radio" name="payment_method" value="cash" checked> Cash</label>
+            <label><input type="radio" name="payment_method" value="online"> Online</label>
+        </div>
+
+        <!-- GENERATE BUTTON -->
+        <button type="submit" class="generate-btn">
+            💾 Generate Bill
+        </button>
+
+        <div class="invoice-footer">
+            <p>Thank You! Visit Again 🙏</p>
+        </div>
+
+    </div>
+</form>
+
+{% endblock %}

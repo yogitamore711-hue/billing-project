@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Trash{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'trash.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>🗑 Trash Bills</h1>
+
+    {% if bills %}
+        <div class="bills-grid">
+            {% for bill in bills %}
+                <div class="bill-card">
+                    <h2>{{ bill.invoice_no }}</h2>
+                    <p><strong>Customer:</strong> {{ bill.customer_name }}</p>
+                    <p><strong>Total:</strong> ₹{{ bill.total_amount }}</p>
+                    <p><strong>Date:</strong> {{ bill.created_at|date:"d M Y H:i" }}</p>
+                    <a href="{% url 'restore_bill' bill.id %}" class="restore-btn">♻ Restore</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="empty-msg">No bills in trash</p>
+    {% endif %}
+</div>
+{% endblock %}

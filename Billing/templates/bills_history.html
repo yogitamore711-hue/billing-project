@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Bill History{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'bill_list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Bill History</h2>
+
+    <div class="bill-list">
+        {% for bill in bills %}
+        <div class="bill-card">
+            <div class="bill-info">
+                <p><strong>Invoice:</strong> {{ bill.invoice_no }}</p>
+                <p><strong>Total:</strong> ₹ {{ bill.grand_total }}</p>
+                <p><strong>Date:</strong> {{ bill.created_at|date:"d-m-Y" }}</p>
+            </div>
+
+            <div class="right">
+                <a href="{% url 'view_bill' bill.id %}" class="view-btn">
+                    View Bill
+                </a>
+
+                <a href="{% url 'delete_bill' bill.id %}" 
+                   onclick="return confirm('Are you sure you want to delete this bill?');"
+                   class="delete-btn">
+                   🗑 Delete
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No bills found.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

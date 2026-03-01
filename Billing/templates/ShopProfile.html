@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ShopProfile{% endblock %}
+{%block extra_css %}
+    <link rel="stylesheet" href="{% static 'shop_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <h2>ShopProfile</h2>
+
+        <form method="post" class="shop-form">
+            {% csrf_token %}
+
+            <h3>Shop Details</h3>
+                    <input type="text" name="shop_name"
+                        class="form-control mb-3 rounded-3"
+                        value="{{ shop.shop_name }}"
+                        placeholder="🏪 Enter Shop Name" required>
+
+                    <textarea name="address"
+                        class="form-control mb-3 rounded-3"
+                        rows="3"
+                        placeholder="📍 Enter Shop Address">{{ shop.address }}</textarea>
+
+                    <input type="tel" name="phone"
+                        class="form-control mb-3 rounded-3"
+                        value="{{ shop.phone }}"
+                        placeholder="📞 Enter Phone Number"
+                        pattern="[0-9]{10}" maxlength="10" required>
+
+                    <input type="text" name="gstin"
+                        class="form-control mb-3 rounded-3"
+                        value="{{ shop.gstin }}"
+                        placeholder="🧾 Enter GSTIN (Optional)"
+                        maxlength="15">
+            <h3>Bank Details</h3>
+                    <input type="text" name="bank_name" placeholder="🏦 Bank Name" required>
+                    <input type="text" name="account_holder" placeholder="👤 Account Holder Name" required>
+                    <input type="text" name="account_number" placeholder="💳 Account Number" required>
+                    <input type="text" name="ifsc_code" placeholder="🔢 IFSC Code" required>
+                    <input type="text" name="upi_id" placeholder="📱 UPI ID (example@upi)" required>
+
+                    <button type="submit">💾 Save Bank Details</button>
+        </form>
+</div>
+
+{% endblock %}

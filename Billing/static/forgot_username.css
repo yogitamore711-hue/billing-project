@@ -1,0 +1,109 @@
+/* ===== PAGE BACKGROUND ===== */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #36d1dc, #5b86e5);
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.forgot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+/* ===== CARD DESIGN ===== */
+.forgot-card {
+    background: #ffffff;
+    padding: 40px;
+    width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* ===== HEADING ===== */
+.forgot-card h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.forgot-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* ===== MESSAGE BOX ===== */
+.message-box {
+    background: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    border-left: 4px solid #5b86e5;
+}
+
+/* ===== INPUT FIELD ===== */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #5b86e5;
+}
+
+/* ===== BUTTON ===== */
+.send-btn {
+    width: 100%;
+    padding: 12px;
+    background: #5b86e5;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.send-btn:hover {
+    background: #3f63d3;
+}
+
+/* ===== BACK LINK ===== */
+.back-login {
+    margin-top: 20px;
+}
+
+.back-login a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #5b86e5;
+    font-weight: 600;
+}
+
+.back-login a:hover {
+    text-decoration: underline;
+}

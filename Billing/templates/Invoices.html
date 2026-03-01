@@ -1,0 +1,42 @@
+{% extends "login.html" %}
+{% load static %}
+
+{% block title %}Invoice{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'bill.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="bill-wrapper">
+    <div class="bill-box">
+        <h2>🧾 Invoice</h2>
+
+        <div class="bill-info">
+            <p><strong>Customer:</strong> {{ customer|default:"N/A" }}</p>
+            <p><strong>Total Amount:</strong> ₹ {{ amount|default:"0.00" }}</p>
+        </div>
+
+        <hr>
+
+        {% if qr_code %}
+        <div class="payment-section">
+            <h3>Scan & Pay</h3>
+            <div class="qr-box">
+                <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+            </div>
+            <p class="upi"><strong>UPI ID:</strong> {{ upi_id }}</p>
+        </div>
+        {% else %}
+        <div class="payment-section">
+            <h3>Payment Method: Cash</h3>
+        </div>
+        {% endif %}
+
+        <div class="actions">
+            <button onclick="window.print()">🖨️ Print Bill</button>
+            <a href="{% url 'bills_history' %}" class="back-btn">⬅ Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

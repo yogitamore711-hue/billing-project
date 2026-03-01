@@ -1,0 +1,79 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Container for the form */
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 400px;
+}
+
+/* Main heading */
+.container h2 {
+    text-align: center;
+    color: #2f3640;
+    margin-bottom: 20px;
+}
+
+/* Section headings */
+.container h3 {
+    color: #273c75;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid #dcdde1;
+    padding-bottom: 5px;
+}
+
+/* Input and textarea styles */
+.shop-form input,
+.shop-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Focus effect for inputs */
+.shop-form input:focus,
+.shop-form textarea:focus {
+    border-color: #273c75;
+    box-shadow: 0 0 5px rgba(39, 60, 117, 0.3);
+    outline: none;
+}
+
+/* Button styling */
+.shop-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #273c75;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shop-form button:hover {
+    background-color: #192a56;
+}
+
+/* Textarea resizing */
+.shop-form textarea {
+    resize: none;
+    height: 80px;
+}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Forgot Username{% endblock %}
+
+{% block extra_css %}
+<style>
+    .container-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        background: linear-gradient(135deg, #36b9cc, #858796);
+    }
+
+    .card-box {
+        background: white;
+        padding: 40px;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .card-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #36b9cc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #2c9faf;
+    }
+
+    .result {
+        margin-top: 15px;
+        text-align: center;
+        font-weight: bold;
+        color: green;
+    }
+
+    .error {
+        text-align: center;
+        color: red;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-box">
+    <div class="card-box">
+
+        <h2>Forgot Username</h2>
+
+        {% for message in messages %}
+            <div class="error">{{ message }}</div>
+        {% endfor %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Enter Registered Email" required>
+            <button type="submit">Find Username</button>
+        </form>
+
+        {% if username %}
+            <div class="result">
+                Your Username: {{ username }}
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f6fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for all bills */
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Heading */
+.container h2 {
+    text-align: center;
+    color: #2f3640;
+    margin-bottom: 20px;
+}
+
+/* Bill list container */
+.bill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual bill card */
+.bill-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover effect */
+.bill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Bill info text */
+.bill-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #2f3640;
+}
+
+/* PDF link button */
+.bill-action a {
+    text-decoration: none;
+    background-color: #273c75;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.bill-action a:hover {
+    background-color: #192a56;
+}
